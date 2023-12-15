@@ -20,6 +20,7 @@ public class MainController {
         try {
             int amount = inputConvertor.convertStringToInt(inputView.readMachineAmount());
             service.createMachine(amount);
+            outputView.printMachine(service.getMachineDto());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             createMachine();

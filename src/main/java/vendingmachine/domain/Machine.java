@@ -24,12 +24,6 @@ public class Machine {
             totalAmount += randomCoinAmount;
             coins.put(Coin.findCoinByAmount(randomCoinAmount), coins.get(Coin.findCoinByAmount(randomCoinAmount)) + 1);
         }
-
-        // log
-        for (Coin coin : coins.keySet()) {
-            System.out.println(coin  + " = " + coins.get(coin));
-        }
-
     }
 
     private void validate(int amount) {
@@ -41,5 +35,9 @@ public class Machine {
     private void initCoins() {
         Arrays.stream(Coin.values())
                 .forEach(coin -> coins.put(coin, 0));
+    }
+
+    public EnumMap<Coin, Integer> getCoins() {
+        return coins;
     }
 }
