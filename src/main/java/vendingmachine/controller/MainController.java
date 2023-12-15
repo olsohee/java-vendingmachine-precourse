@@ -18,6 +18,7 @@ public class MainController {
     public void run() {
         createMachine();
         createMerchandise();
+        createUserAmount();
     }
 
     private void createMachine() {
@@ -39,6 +40,15 @@ public class MainController {
             outputView.printErrorMessage(e.getMessage());
             createMerchandise();
         }
+    }
 
+    private void createUserAmount() {
+        try {
+            int userAmount = inputConvertor.convertStringToInt(inputView.readUserAmount());
+            service.createUser(userAmount);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            createUserAmount();
+        }
     }
 }

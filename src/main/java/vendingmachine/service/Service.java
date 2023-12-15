@@ -2,6 +2,7 @@ package vendingmachine.service;
 
 import vendingmachine.domain.Machine;
 import vendingmachine.domain.Merchandise;
+import vendingmachine.domain.User;
 import vendingmachine.dto.MachineDto;
 import vendingmachine.dto.MerchandiseDto;
 import vendingmachine.message.ErrorMessage;
@@ -9,13 +10,13 @@ import vendingmachine.repository.MerchandiseRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Service {
 
     private static Service service = new Service();
     private static final MerchandiseRepository merchandiseRepository = MerchandiseRepository.getInstance();
     private Machine machine;
+    private User user;
 
     private Service() {
     }
@@ -51,5 +52,9 @@ public class Service {
         if (nonDuplicatedCount != merchandiseDtos.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_MERCHANDISE_NAME.getErrorMessage());
         }
+    }
+
+    public void createUser(int userAmount) {
+        user = new User(userAmount);
     }
 }
