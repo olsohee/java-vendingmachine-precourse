@@ -20,4 +20,16 @@ public class MerchandiseRepository {
     public void save(Merchandise merchandise) {
         merchandises.add(merchandise);
     }
+
+    public int getMinPrice() {
+        return merchandises.stream()
+                .min((merchandise1, merchandise2) -> merchandise1.compareTo(merchandise2))
+                .get().getPrice();
+    }
+
+    public boolean isSoldOut() {
+        boolean isExist = merchandises.stream()
+                .anyMatch(merchandise -> merchandise.getQuantity() != 0);
+        return !isExist;
+    }
 }

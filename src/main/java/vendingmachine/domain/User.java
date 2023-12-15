@@ -20,4 +20,12 @@ public class User {
     public void reduceAmount(int amountToReduce) {
         amount -= amountToReduce;
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public boolean cannotBuy(int minPrice) {
+        return amount < minPrice;
+    }
 }

@@ -5,6 +5,7 @@ import vendingmachine.domain.Merchandise;
 import vendingmachine.domain.User;
 import vendingmachine.dto.MachineDto;
 import vendingmachine.dto.MerchandiseDto;
+import vendingmachine.dto.UserAmountDto;
 import vendingmachine.message.ErrorMessage;
 import vendingmachine.repository.MerchandiseRepository;
 
@@ -56,5 +57,13 @@ public class Service {
 
     public void createUser(int userAmount) {
         user = new User(userAmount);
+    }
+
+    public UserAmountDto getUserAmountDto() {
+        return new UserAmountDto(user.getAmount());
+    }
+
+    public boolean isEnd() {
+        return user.cannotBuy(merchandiseRepository.getMinPrice()) || merchandiseRepository.isSoldOut();
     }
 }

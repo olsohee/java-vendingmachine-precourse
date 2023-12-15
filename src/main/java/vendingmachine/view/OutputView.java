@@ -1,6 +1,7 @@
 package vendingmachine.view;
 
 import vendingmachine.dto.MachineDto;
+import vendingmachine.dto.UserAmountDto;
 import vendingmachine.message.OutputMessage;
 
 import java.util.List;
@@ -26,5 +27,9 @@ public class OutputView {
                 .forEach(dto -> System.out.println(String.format
                         (OutputMessage.MACHINE_INFO.getMessage(), dto.getCoin(), dto.getQuantity()))
                 );
+    }
+
+    public void printUserAmount(UserAmountDto userAmountDto) {
+        System.out.println(String.format(OutputMessage.USER_AMOUNT.getMessage(), userAmountDto.getAmount()));
     }
 }

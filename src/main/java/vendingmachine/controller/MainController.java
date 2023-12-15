@@ -19,6 +19,10 @@ public class MainController {
         createMachine();
         createMerchandise();
         createUserAmount();
+
+        while (!service.isEnd()) {
+            buy();
+        }
     }
 
     private void createMachine() {
@@ -50,5 +54,9 @@ public class MainController {
             outputView.printErrorMessage(e.getMessage());
             createUserAmount();
         }
+    }
+
+    private void buy() {
+        outputView.printUserAmount(service.getUserAmountDto());
     }
 }

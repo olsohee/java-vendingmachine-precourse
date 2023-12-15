@@ -2,7 +2,7 @@ package vendingmachine.domain;
 
 import vendingmachine.message.ErrorMessage;
 
-public class Merchandise {
+public class Merchandise implements Comparable<Merchandise> {
 
     private String name;
     private int price;
@@ -26,5 +26,22 @@ public class Merchandise {
         if (quantity < 1) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_MERCHANDISE_QUANTITY.getErrorMessage());
         }
+    }
+
+    @Override
+    public int compareTo(Merchandise other) {
+        return this.price - other.price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }
