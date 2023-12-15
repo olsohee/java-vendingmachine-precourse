@@ -1,9 +1,12 @@
 package vendingmachine.controller;
 
+import vendingmachine.dto.MerchandiseDto;
 import vendingmachine.service.Service;
 import vendingmachine.utils.InputConvertor;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
+
+import java.util.List;
 
 public class MainController {
 
@@ -14,6 +17,7 @@ public class MainController {
 
     public void run() {
         createMachine();
+        createMerchandise();
     }
 
     private void createMachine() {
@@ -25,5 +29,17 @@ public class MainController {
             outputView.printErrorMessage(e.getMessage());
             createMachine();
         }
+    }
+
+    private void createMerchandise() {
+        try {
+            List<MerchandiseDto> merchandiseDtos =
+                    inputConvertor.convertStringToMerchandiseDtos(inputView.readMerchandise());
+            service.createMerchandise(merchandiseDtos);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            createMerchandise();
+        }
+
     }
 }
