@@ -66,4 +66,10 @@ public class Service {
     public boolean isEnd() {
         return user.cannotBuy(merchandiseRepository.getMinPrice()) || merchandiseRepository.isSoldOut();
     }
+
+    public void buy(String merchandiseName) {
+        Merchandise merchandise = merchandiseRepository.findByName(merchandiseName);
+        merchandise.buy(user.getAmount());
+        user.reduceAmount();
+    }
 }

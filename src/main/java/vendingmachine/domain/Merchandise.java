@@ -28,6 +28,17 @@ public class Merchandise implements Comparable<Merchandise> {
         }
     }
 
+    public void buy(int userAmount) {
+        if (quantity < 1) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_STOCK.getErrorMessage());
+        }
+        if (price > userAmount) {
+            throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_AMOUNT.getErrorMessage());
+        }
+
+        quantity--;
+    }
+
     @Override
     public int compareTo(Merchandise other) {
         return this.price - other.price;

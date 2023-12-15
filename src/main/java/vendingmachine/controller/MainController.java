@@ -57,6 +57,13 @@ public class MainController {
     }
 
     private void buy() {
-        outputView.printUserAmount(service.getUserAmountDto());
+        try {
+            outputView.printUserAmount(service.getUserAmountDto());
+            service.buy(inputView.readBuyMerchandise());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            buy();
+        }
+
     }
 }

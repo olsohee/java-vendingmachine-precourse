@@ -1,6 +1,7 @@
 package vendingmachine.repository;
 
 import vendingmachine.domain.Merchandise;
+import vendingmachine.message.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,5 +32,12 @@ public class MerchandiseRepository {
         boolean isExist = merchandises.stream()
                 .anyMatch(merchandise -> merchandise.getQuantity() != 0);
         return !isExist;
+    }
+
+    public Merchandise findByName(String buyMerchandiseName) {
+        return merchandises.stream()
+                .filter(merchandise -> merchandise.getName().equals(buyMerchandiseName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_FOUND_MERCHANDISE.getErrorMessage()));
     }
 }
