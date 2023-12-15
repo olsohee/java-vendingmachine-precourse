@@ -17,8 +17,8 @@ public class User {
         }
     }
 
-    public void reduceAmount() {
-        amount--;
+    public void reduceAmount(int amountToReduce) {
+        amount -= amountToReduce;
     }
 
     public int getAmount() {

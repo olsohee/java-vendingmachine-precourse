@@ -23,6 +23,8 @@ public class MainController {
         while (!service.isEnd()) {
             buy();
         }
+
+        printResult();
     }
 
     private void createMachine() {
@@ -64,6 +66,10 @@ public class MainController {
             outputView.printErrorMessage(e.getMessage());
             buy();
         }
+    }
 
+    private void printResult() {
+        outputView.printUserAmount(service.getUserAmountDto());
+        outputView.printChanges(service.getChangesDto());
     }
 }
