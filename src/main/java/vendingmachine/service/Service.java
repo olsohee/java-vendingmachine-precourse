@@ -1,7 +1,6 @@
 package vendingmachine.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import vendingmachine.Coin;
+import vendingmachine.domain.Coin;
 import vendingmachine.domain.Machine;
 import vendingmachine.domain.Merchandise;
 import vendingmachine.domain.User;
@@ -12,7 +11,6 @@ import vendingmachine.dto.UserAmountDto;
 import vendingmachine.message.ErrorMessage;
 import vendingmachine.repository.MerchandiseRepository;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
