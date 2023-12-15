@@ -4,10 +4,12 @@ import vendingmachine.domain.Machine;
 import vendingmachine.domain.Merchandise;
 import vendingmachine.dto.MachineDto;
 import vendingmachine.dto.MerchandiseDto;
+import vendingmachine.message.ErrorMessage;
 import vendingmachine.repository.MerchandiseRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Service {
 
@@ -33,9 +35,21 @@ public class Service {
     }
 
     public void createMerchandise(List<MerchandiseDto> merchandiseDtos) {
+        validateDuplicated(merchandiseDtos);
         for (MerchandiseDto dto : merchandiseDtos) {
             Merchandise merchandise = new Merchandise(dto.getName(), dto.getPrice(), dto.getQuantity());
             merchandiseRepository.save(merchandise);
+        }
+    }
+
+    private void validateDuplicated(List<MerchandiseDto> merchandiseDtos) {
+        int nonDuplicatedCount = (int) merchandiseDtos.stream()
+                .map(dto -> dto.getName())
+                .collect(Collectors.toList()).stream()
+                .distinct()
+                .count();
+        if (nonDuplicatedCount != merchandiseDtos.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_MERCHANDISE_NAME.getErrorMessage());
         }
     }
 }

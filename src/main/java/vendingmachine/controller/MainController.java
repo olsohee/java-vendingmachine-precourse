@@ -33,8 +33,7 @@ public class MainController {
 
     private void createMerchandise() {
         try {
-            List<MerchandiseDto> merchandiseDtos =
-                    inputConvertor.convertStringToMerchandiseDtos(inputView.readMerchandise());
+            List<MerchandiseDto> merchandiseDtos = inputConvertor.convertStringToMerchandiseDtos(inputView.readMerchandise());
             service.createMerchandise(merchandiseDtos);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());

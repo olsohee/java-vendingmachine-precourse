@@ -24,7 +24,7 @@ public class Merchandise {
 
     private void validateQuantity(int quantity) {
         if (quantity < 1) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_MERCHANDISE_QUANTIRY.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MERCHANDISE_QUANTITY.getErrorMessage());
         }
     }
 }
